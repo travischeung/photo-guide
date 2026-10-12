@@ -20,7 +20,7 @@ Lanes B–D start only after the user validates Phase 1 on device. Each lane wor
 | Lane | Work | Owns | Needs device | Status |
 |---|---|---|---|---|
 | A | Phase 1 on-device pass → Phase 2 capability spike | `ios/PhotoCoach/` camera files | Yes (user) | Active — on-device pass pending |
-| B | Pure logic ahead of Phase 4: recipe schema + validator (TRD §7), coach state machine + temporal policy (§8), photo-coordinate transforms (§6); unit tests on synthetic inputs | `ios/PhotoCoach/Recipe/`, `ios/PhotoCoach/Coach/`, matching test folders | No | Waiting on Phase 1 validation |
+| B | Pure logic ahead of Phase 4: recipe schema + validator (TRD §7), coach state machine + temporal policy (§8), photo-coordinate transforms (§6); unit tests on synthetic inputs. Wiring transforms to the camera waits on Phase 2(b) mapping verification | `ios/PhotoCoach/Recipe/`, `ios/PhotoCoach/Coach/`, matching test folders | No | Waiting on Phase 1 validation |
 | C | Research: Vision body-pose vs person-rectangle reliability for full-body shots on iOS 18+ (ankles/feet, distance, low light) | `docs/research/` | No | Waiting on Phase 1 validation |
 | D | Design mockups: recipe picker, coaching text, ready state, review screen | Artifacts (no repo files) | No | Not scheduled — after Phase 4 exists, or earlier on request |
 | — | Phase 3 recipe content | — | No | User-led, when ready |

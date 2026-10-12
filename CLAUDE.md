@@ -28,7 +28,7 @@ iOS camera app that gives live, recipe-based text coaching to the photographer. 
 
 ## Product constraints that must not drift
 
-- No overlays, silhouettes, or ghost images in the viewfinder (D03). Text coaching only.
+- No overlays, silhouettes, or ghost images in the viewfinder (D03). Coaching is text, plus a light haptic when the shot is ready (D12).
 - One active instruction at a time; every instruction is a physical action (F03).
 - The shutter is never blocked by coaching (F06). Coaching degrades before camera responsiveness does.
 - Live coaching is on-device Vision + deterministic recipe rules; no AI models, no uploads (D15, §9 privacy).
@@ -47,4 +47,4 @@ cd ios && xcodebuild test -project PhotoCoach.xcodeproj -scheme PhotoCoach \
   -destination 'platform=iOS Simulator,name=iPhone 16,OS=18.6'
 ```
 
-Pin `OS=18.6`: there are two "iPhone 16" simulators, and 18.6 proves the iOS 18 floor.
+Pin `OS=18.6`: there are two "iPhone 16" simulators, and 18.6 keeps tests on iOS 18. It doesn't prove the 18.0 minimum; test on an 18.0 runtime when one is installed.
