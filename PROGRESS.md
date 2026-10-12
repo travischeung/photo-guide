@@ -13,6 +13,20 @@ Phase plan and exit criteria: [TRD §13](docs/TRD.md#13-delivery-sequence). Time
 | 6 | Performance gate | Not started | | |
 | 7 | Pilot | Not started | | |
 
+## Lanes (parallel work)
+
+Lanes B–D start only after the user validates Phase 1 on device. Each lane works on its own branch/worktree, touches only its folders, and merges via PR.
+
+| Lane | Work | Owns | Needs device | Status |
+|---|---|---|---|---|
+| A | Phase 1 on-device pass → Phase 2 capability spike | `ios/PhotoCoach/` camera files | Yes (user) | Active — on-device pass pending |
+| B | Pure logic ahead of Phase 4: recipe schema + validator (TRD §7), coach state machine + temporal policy (§8), photo-coordinate transforms (§6); unit tests on synthetic inputs | `ios/PhotoCoach/Recipe/`, `ios/PhotoCoach/Coach/`, matching test folders | No | Waiting on Phase 1 validation |
+| C | Research: Vision body-pose vs person-rectangle reliability for full-body shots on iOS 18+ (ankles/feet, distance, low light) | `docs/research/` | No | Waiting on Phase 1 validation |
+| D | Design mockups: recipe picker, coaching text, ready state, review screen | Artifacts (no repo files) | No | Not scheduled — after Phase 4 exists, or earlier on request |
+| — | Phase 3 recipe content | — | No | User-led, when ready |
+
+Lane B pulls Phase 4 logic ahead of Phase 2 (a change to TRD §13 order). Record it in the TRD when the lane starts.
+
 ## Phase 0 — Setup
 
 - [x] `ios/PhotoCoach.xcodeproj`: SwiftUI app + Swift Testing target, iOS 18.0, iPhone only, portrait, no dependencies
@@ -63,3 +77,4 @@ Open items / found during spike:
 
 - 2026-10-12: Phase plan recorded (TRD v0.3, PRD D16). Blank app created and verified in simulator.
 - 2026-10-12: Phase 0 done (confirmed on device). Phase 1 started: camera, review/save, and instrumentation code in; on-device checks and baseline pending.
+- 2026-10-12: Phase 1 code pushed (edcccda). Added CLAUDE.md for agent onboarding and a lanes plan; lanes B and C wait on Phase 1 on-device validation.
