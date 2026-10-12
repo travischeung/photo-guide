@@ -30,8 +30,8 @@ Core loop: choose a shot recipe → observe the live scene → suggest one photo
 | D11 | Minimum OS is iOS 18; hardware support decided after benchmarking. |
 | D12 | Prototype coaching is text plus a light haptic when the shot becomes ready. |
 | D13 | Capture flow is review-then-save. |
-| D15 | Live coaching uses on-device Vision observations plus deterministic recipe rules. AI models are reserved for later post-capture critique. |
 | D14 | Build order: camera preview baseline → Vision body tracking → framing evaluation and coaching. |
+| D15 | Live coaching uses on-device Vision observations plus deterministic recipe rules. AI models are reserved for later post-capture critique. |
 
 ## 4. Initial scope — proposed defaults
 
