@@ -1,6 +1,6 @@
 # Product Requirements Document — Partner Photo Coach
 
-Version: 0.2 · Date: October 11, 2026 · Status: Draft for user audit
+Version: 0.3 · Date: October 12, 2026 · Status: Draft for user audit
 Prior versions: [versions/](versions/)
 
 ## 1. Document authority
@@ -32,6 +32,7 @@ Core loop: choose a shot recipe → observe the live scene → suggest one photo
 | D13 | Capture flow is review-then-save. |
 | D14 | Build order: camera preview baseline → Vision body tracking → framing evaluation and coaching. |
 | D15 | Live coaching uses on-device Vision observations plus deterministic recipe rules. AI models are reserved for later post-capture critique. |
+| D16 | Development and test devices: iPhone 16 through iPhone 18 Pro. Live coaching does not depend on Apple Intelligence (D15). The shipped support floor is still set by benchmarking (TRD §13, Phase 6). |
 
 ## 4. Initial scope — proposed defaults
 
@@ -92,7 +93,7 @@ Provisional product gate: at least 80% of observed instructions understood witho
 ## 11. Open decisions
 
 - Confirm whether example photos appear on recipe selection only. (First recipe confirmed: full-body outfit.)
-- Confirm minimum iPhone hardware after benchmarking (iOS 18 floor agreed).
+- Confirm minimum iPhone hardware after benchmarking (iOS 18 floor agreed; test range iPhone 16–18 Pro per D16).
 - Decide later voice priority.
 - Decide whether auto-save becomes an option (review-then-save agreed for prototype).
 - Define free vs. paid boundary and cloud critique scope before building the backend.
@@ -105,3 +106,4 @@ Provisional product gate: at least 80% of observed instructions understood witho
 |---|---|---|
 | October 11, 2026 | Recorded D01–D07 from discussion; proposed initial scope and gates | v0.1 draft; user audit pending |
 | October 11, 2026 | Added D08–D14 (App Store, freemium, cloud critique later, iOS 18, haptic ready signal, review-then-save, build order); narrowed open decisions; D15 live coaching is on-device rules | v0.2 draft; v0.1 in versions/ |
+| October 12, 2026 | Added D16 (test device range iPhone 16–18 Pro; no Apple Intelligence dependency) | v0.3 draft; v0.2 in versions/ |

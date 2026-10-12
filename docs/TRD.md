@@ -1,6 +1,6 @@
 # Technical Requirements Document — Partner Photo Coach
 
-Version: 0.2 · Date: October 11, 2026 · Status: Proposed architecture for audit
+Version: 0.3 · Date: October 12, 2026 · Status: Proposed architecture for audit
 Prior versions: [versions/](versions/)
 Companion: [PRD](PRD.md)
 
@@ -12,7 +12,7 @@ The PRD governs behavior. This TRD specifies a proposed implementation, capabili
 
 Swift; SwiftUI for application UI; AVFoundation for capture and native preview; Vision for person/body landmark observations; Core Motion for phone attitude; SwiftUI sensory feedback for the readiness haptic; PhotoKit for user-directed saving. Use a UIView-backed AVCaptureVideoPreviewLayer rather than rendering each analyzed frame into SwiftUI. No game engine, server inference, conversational LLM, custom-trained model, or ARKit requirement in the prototype.
 
-Minimum OS: iOS 18 (PRD D11). Minimum hardware is decided through benchmarking. Gate optional capture features by runtime availability and capability.
+Minimum OS: iOS 18 (PRD D11). Development and benchmark devices: iPhone 16 through iPhone 18 Pro (PRD D16). Vision body pose and Core Motion run on all of these without Apple Intelligence. The shipped hardware floor is decided through benchmarking. Gate optional capture features by runtime availability and capability.
 
 ## 2a. Repository, accounts, and deployment
 
@@ -131,12 +131,18 @@ No uploads, identity templates, or persistent analysis frames. Recipes and prefe
 
 ## 13. Delivery sequence
 
-1. Camera spike: preview, capture, review/save; establish coaching-off baseline.
-2. Capability spike: landmarks, motion, coordinates, and one reliable correction; identify unsupported claims.
-3. Coach loop: recipe evaluator, temporal policy, skip/pause, readiness, uncertainty.
-4. Expand to three or four validated corrections within one recipe.
-5. Performance and usability pilot; update scope, thresholds, and support matrix.
-6. Audit PRD/TRD revisions before adding recipes, pose coaching, or advanced perspective guidance.
+Each phase has a question, an exit condition, and a hard timebox. A spike that reaches its timebox stops and reports its findings, even if unfinished; scope is then re-decided rather than extended silently. Timeboxes are first guesses for one developer, revisited after Phase 1. Progress is tracked in [PROGRESS.md](../PROGRESS.md).
+
+| # | Phase | Question | Exit | Timebox |
+|---|---|---|---|---|
+| 0 | Setup | Does a blank app build, test, and run? | `ios/` project; Swift Testing passes; runs on a personal iPhone | ½ day |
+| 1 | Camera spike | Can a native preview + photo output feel close to Apple's Camera app? | Preview, capture, review/save/retry, permission denial, interruptions; recorded coaching-off baseline (startup, shutter acknowledgment, frame drops); side-by-side note with Apple Camera | 3–5 days |
+| 2 | Capability spike | Which candidate checks can be measured reliably? | (a) body pose vs person-rectangle reliability for full-body shots at ~640 px; (b) buffer → preview → captured-photo mapping verified with asymmetric scenes, judged against the photo's 4:3 composition rather than the aspect-filled preview; (c) roll sign and accuracy vs a physical level; (d) 5 Hz analysis for 10 minutes: drops, thermal, memory. Fixture recorder for local consented clips plus observation logs. Output: capability matrix (reliable / conditional / unsupported) and one end-to-end correction | 1–2 weeks |
+| 3 | Recipe content spike (user-led, runs alongside 1–2) | What does the full-body outfit recipe mean in measurable ranges? | Draft recipe JSON per §7 with provenance; ranges derived from 10–20 original reference photos; decision on where example photos appear | Alongside 1–2 |
+| 4 | Coach loop | Is guidance calm, correct, and never stale? | Recipe validation, evaluator, state machine, temporal policy, skip/pause, readiness haptic, stale rejection; fixture replay shows no flicker or near-threshold reversals | 1–2 weeks |
+| 5 | Expand and self-test | Does it help in real shoots? | 3–4 corrections that passed Phase 2; structured self-test sessions with wrong/unnecessary/reversed instructions logged; §8 values tuned | 1–2 weeks |
+| 6 | Performance gate | Which iPhones are supported? | §9 gates measured on iPhone 16 and iPhone 18 Pro; hardware floor decided | 3–5 days |
+| 7 | Pilot | Do couples prefer coached photos? | Paid Developer Program, TestFlight, pilot protocol and consent, approved thresholds; PRD §10 pilot; then audit PRD/TRD before adding recipes, pose coaching, or advanced perspective guidance | 2–4 weeks |
 
 ## 14. Technical sources
 
@@ -155,3 +161,4 @@ These sources establish platform capabilities; project latency targets, decision
 |---|---|---|
 | October 11, 2026 | Proposed native local pipeline, one recipe, bounded inference, and validation gates | v0.1 draft; audit and feasibility spike pending |
 | October 11, 2026 | iOS 18 baseline, readiness haptic, repo layout, free-account local development, future deployment and backend outline | v0.2; v0.1 in versions/ |
+| October 12, 2026 | Phase plan with timeboxed spikes; test device range iPhone 16–18 Pro; Phase 0 project created | v0.3; v0.2 in versions/ |
