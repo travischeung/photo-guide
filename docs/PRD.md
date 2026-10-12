@@ -30,6 +30,7 @@ Core loop: choose a shot recipe → observe the live scene → suggest one photo
 | D11 | Minimum OS is iOS 18; hardware support decided after benchmarking. |
 | D12 | Prototype coaching is text plus a light haptic when the shot becomes ready. |
 | D13 | Capture flow is review-then-save. |
+| D15 | Live coaching uses on-device Vision observations plus deterministic recipe rules. AI models are reserved for later post-capture critique. |
 | D14 | Build order: camera preview baseline → Vision body tracking → framing evaluation and coaching. |
 
 ## 4. Initial scope — proposed defaults
@@ -95,7 +96,6 @@ Provisional product gate: at least 80% of observed instructions understood witho
 - Decide later voice priority.
 - Decide whether auto-save becomes an option (review-then-save agreed for prototype).
 - Define free vs. paid boundary and cloud critique scope before building the backend.
-- Confirm whether "AI framing evaluation" means on-device deterministic rules (current design) or a model/LLM.
 - Approve pilot method and product/performance thresholds.
 - Decide which three or four live corrections survive the capability spike.
 
@@ -104,4 +104,4 @@ Provisional product gate: at least 80% of observed instructions understood witho
 | Date | Change | Status |
 |---|---|---|
 | October 11, 2026 | Recorded D01–D07 from discussion; proposed initial scope and gates | v0.1 draft; user audit pending |
-| October 11, 2026 | Added D08–D14 (App Store, freemium, cloud critique later, iOS 18, haptic ready signal, review-then-save, build order); narrowed open decisions | v0.2 draft; v0.1 in versions/ |
+| October 11, 2026 | Added D08–D14 (App Store, freemium, cloud critique later, iOS 18, haptic ready signal, review-then-save, build order); narrowed open decisions; D15 live coaching is on-device rules | v0.2 draft; v0.1 in versions/ |
